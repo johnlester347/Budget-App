@@ -159,6 +159,15 @@ var UIController = (function () {
 
         displayBudget: function (obj) {
 
+            document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
+            document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
+            document.querySelector(DOMstrings.expensesLabel).textContent = obj.totalExp;
+
+            if (obj.percentage > 0) {
+                document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage + '%';
+            } else {
+                document.querySelector(DOMstrings.percentageLabel).textContent = '---';
+            }
         },
 
         getDOMstrings: function () {
@@ -195,7 +204,7 @@ var controller = (function (budgetCtrl, UICtrl) {
         var budget = budgetCtrl.getBudget();
 
         // 3. Display the budget on the UI
-        console.log(budget);
+        UICtrl.displayBudget(budget);
     };
 
     var ctrlAddItem = function () {
@@ -227,6 +236,12 @@ var controller = (function (budgetCtrl, UICtrl) {
 
     return {
         init: function () {
+            UICtrl.displayBudget({
+                budget: 0,
+                totalInc: 0,
+                totalExp: 0,
+                percentage: -1
+            });
             setupEventListeners();
         }
     };
@@ -235,137 +250,3 @@ var controller = (function (budgetCtrl, UICtrl) {
 })(budgetController, UIController);
 
 controller.init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //
-// var budgetController = (function() {
-
-// })();
-
-
-// // UI CONTROLLER
-// var UIController = (function() {
-
-//   var DOMstrings = {
-//     inputType: ".add__btn",
-//     inputDescription: ".add__description",
-//     inputValue: ".add__value",
-//     inputBtn: ".add__btn"
-//   }
-
-//   return {
-//     getInput: function() {
-//       return {
-//         type: document.querySelector(DOMstrings.inputType).value,
-//         description: document.querySelector(DOMstrings.inputDescription).valeu,
-//         value: document.querySelector(DOMstrings.inputValue).value
-//       };
-//     },
-
-//     getDOMstrings: function() {
-//       return DOMstrings;
-//     }
-//   };
-
-// })();
-
-// // GLOBAL APP CONTROLLER
-// var controller = (function(budgetCtrl, UICtrl) {
-
-//   var setupEventListeners = function() {
-//     var DOM = UICtrl.getDOMstrings();
-
-//     document.querySelector(DOM.inputBtn).addEventListener("click", ctrlAddItem)
-//     document.addEventListener("keydown", function(event) {
-
-//       if (event.keyCode === 13 || event.which === 13) {
-//         ctrlAddItem();
-//       }
-
-//     });
-//   };
-
-
-//   var ctrlAddItem = function() {
-
-//     var input = UICtrl.getInput();
-//     console.log(input);
-
-//   };
-
-//   return {
-//     init: function() {
-//       console.log("Application has started.");
-//       setupEventListeners();
-//     }
-//   };
-
-// })(budgetController, UIController);
-
-// controller.init();
