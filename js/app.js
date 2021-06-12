@@ -94,7 +94,7 @@ var budgetController = (function () {
 
             index = ids.indexOf(id);
 
-            if (index !== -1) {
+            if (index !== -1) { // -1 is if we didnt find the element in the array
                 data.allItems[type].splice(index, 1);
             }
         },
@@ -321,7 +321,6 @@ var UIController = (function () {
         }
     };
 
-
 })();
 
 
@@ -333,9 +332,9 @@ var controller = (function (budgetCtrl, UICtrl) {
     var setupEventListeners = function () {
         var DOM = UICtrl.getDOMstrings();
 
-        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem);
+        document.querySelector(DOM.inputBtn).addEventListener('click', ctrlAddItem); // When the button was clicked
 
-        document.addEventListener('keydown', function (event) {
+        document.addEventListener('keydown', function (event) { // When someone enter the key in the keyboard
 
             if (event.key === 'Enter') {
                 ctrlAddItem();
@@ -343,7 +342,7 @@ var controller = (function (budgetCtrl, UICtrl) {
 
         });
 
-        document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem);
+        document.querySelector(DOM.container).addEventListener('click', ctrlDeleteItem); // 
 
         document.querySelector(DOM.inputType).addEventListener('change', UICtrl.changedType);
     };
@@ -399,8 +398,6 @@ var controller = (function (budgetCtrl, UICtrl) {
 
         }
 
-
-
     };
 
     // Function Expression
@@ -444,7 +441,6 @@ var controller = (function (budgetCtrl, UICtrl) {
 
         }
     };
-
 
 })(budgetController, UIController);
 
